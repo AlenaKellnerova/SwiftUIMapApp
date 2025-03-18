@@ -51,10 +51,10 @@ class LocationsViewModel: ObservableObject {
         }
     }
     
-    func showNextLocation(location: Location){
+    func showNextLocation(location: Location) {
         withAnimation(.easeInOut) {
-            toggleListOfLocations()
             currentLocation = location
+            toggleListOfLocations()
         }
     }
     

@@ -15,11 +15,13 @@ struct LocationsListView: View {
         List {
             ForEach(vm.locations) { location in
                     listItem(for: location)
-                    .onTapGesture {
-                        vm.showNextLocation(location: location)
-                    }
                 .padding(.vertical, 4)
                 .listRowBackground(Color.clear)
+                .onTapGesture {
+                    DispatchQueue.main.async {
+                        vm.showNextLocation(location: location) 
+                    }
+                }
             }
         }
         .listStyle(PlainListStyle())
