@@ -20,15 +20,13 @@ struct LocationsView: View {
             
             VStack {
                 header
-                    .onTapGesture {
-                            vm.toggleListOfLocations()
-                    }
-                
+                    .onTapGesture { vm.toggleListOfLocations() }
                 Spacer()
-                
                 locationsPreviewStack
             }
-            
+        }
+        .sheet(item: $vm.sheetLocation) { location in
+            LocationDetailView(location: location)
         }
     }
 }
@@ -37,7 +35,6 @@ extension LocationsView {
     
     private var header: some View {
         VStack {
-            // Title
             Text(vm.currentLocation.name + ", " + vm.currentLocation.cityName)
                 .font(.title2)
                 .fontWeight(.black)
@@ -51,7 +48,6 @@ extension LocationsView {
                         .padding()
                         .rotationEffect(Angle(degrees: vm.showListOfLocations ? 180 : 0))
                 }
-            // Expandable list of locations
             if (vm.showListOfLocations) {
                 LocationsListView()
             }

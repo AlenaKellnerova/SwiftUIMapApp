@@ -30,6 +30,9 @@ class LocationsViewModel: ObservableObject {
     // Show list of locations
     @Published var showListOfLocations: Bool = false
     
+    // Show location detail sheet
+    @Published var sheetLocation: Location? = nil
+    
     init() {
         let locations = LocationsDataService.locations
         self.locations = locations
@@ -59,16 +62,8 @@ class LocationsViewModel: ObservableObject {
     }
     
     func nextButtonPressed() {
-        /*
-         1. get the current index
-         2. check if next index is valid
-         3. go to next location
-         */
         
         // Get the current index
-//        let currentIndex = locations.firstIndex { location in
-//            return location == currentLocation
-//        }
         
         guard let currentIndex = locations.firstIndex(where: { $0 == currentLocation }) else {
             print("Could not get the current index in locations array. Should never happen!")
