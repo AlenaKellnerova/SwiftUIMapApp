@@ -11,6 +11,7 @@ import MapKit
 struct LocationsView: View {
     
     @EnvironmentObject private var vm: LocationsViewModel
+    let maxWidthForIpad: CGFloat = 700
     
     var body: some View {
 
@@ -20,6 +21,7 @@ struct LocationsView: View {
             
             VStack {
                 header
+                    .frame(maxWidth: maxWidthForIpad)
                     .onTapGesture { vm.toggleListOfLocations() }
                 Spacer()
                 locationsPreviewStack
@@ -81,6 +83,8 @@ extension LocationsView {
                 LocationPreviewView(location: location)
                         .shadow(color: Color.black.opacity(0.2), radius: 20)
                         .padding()
+                        .frame(maxWidth: maxWidthForIpad)
+                        .frame(maxWidth: .infinity) // for smoother iPad animation
                         .transition(.asymmetric(
                             insertion: .move(edge: .trailing),
                             removal: .move(edge: .leading)))
